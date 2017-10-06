@@ -1,4 +1,8 @@
-# [Material Dashboard Angular - Free Bootstrap Material Design Admin](https://www.creative-tim.com/product/material-dashboard-angular2)
+### !!! _Note: this repository will be merged to [ngx-client](https://github.com/sdey0081/ngx-client) which has been refactored with [angular-cli latest version](https://github.com/angular/angular-cli) with various customized material components._
+
+
+
+# [Material Dashboard Angular - Free Bootstrap Material Design Admin](https://ngx-client.firebaseapp.com)
 
 ![alt text](http://s3.amazonaws.com/creativetim_bucket/products/53/original/opt_md_angular_thumbnail.jpg "Material Dashboard Angular Free")
 
