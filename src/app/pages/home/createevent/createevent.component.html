@@ -1,0 +1,102 @@
+<div>
+  <div class="row">
+    <div class="col-lg-8" style="margin-left:10%">
+      <form>
+        <h1 style="text-align:center">Create Event</h1>
+        <hr/>
+        <fieldset class="form-group">
+          <label>Event Name *</label>
+          <input class="form-control" type="text" #eventName required>
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Event Location *</label>
+          <input class="form-control" type="text" #eventLocation required>
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Event Date *</label>
+          <input class="form-control" type="date" #eventDate required>
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Event Time</label>
+          <input class="form-control" type="time" #eventTime required>
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <div class="form-group">
+          <label>Event Pay Type</label>
+          <select class="form-control" #payType required>
+            <option selected></option>
+            <option value="1">Per Hour</option>
+            <option value="2">Per Day</option>
+          </select>
+        </div>
+        <fieldset class="form-group">
+          <label>Pay Rate</label>
+          <div class="input-box">
+            <input class="inputs" value="" #payRate autofocus="autofocus" required/>
+            <span class="unit">RM</span>
+          </div>
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <fieldset class="form-group">
+          <label>Event Description</label>
+          <textarea class="form-control" rows="3" #eventDesc ></textarea>
+        </fieldset>
+
+        <div class="form-group">
+          <label>Event Type</label>
+          <select class="form-control" #eventType required>
+            <option selected></option>
+            <option *ngFor="let eventTypes of eventTypes" [value]="eventTypes.typeId">{{eventTypes.typeName}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Required Participant Type</label>
+          <select class="form-control" #participantType required (change)="change(participantType.value)">
+            <option selected></option>
+            <option *ngFor="let participantTypes of participantTypes" [value]="participantTypes.participantTypeId">{{participantTypes.participantTypeName}}</option>
+          </select>
+        </div>
+        <fieldset class="form-group" *ngIf="male">
+          <label>Number of Male Participant</label>
+          <input class="form-control" #male type="number" value="">
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <fieldset class="form-group" *ngIf="female">
+          <label>Number of Female Participant</label>
+          <input class="form-control" #female type="number" value="">
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <fieldset class="form-group" *ngIf="mixed">
+          <label>Number of Mixed Participant</label>
+          <input class="form-control" #mixed type="number" value="">
+          <!-- <p class="help-block">Example block-level help text here.</p> -->
+        </fieldset>
+        <div class="form-group">
+          <label>Assigned to :</label>
+          <select class="form-control" #assignedTo required>
+            <option selected></option>
+            <option *ngFor="let staff of staff" [value]="staff.staffId">{{staff.username}}</option>
+          </select>
+        </div>
+        <div style="text-align:center">
+          <button type="button" class="btn btn-danger" (click)="create(eventName.value,
+          eventLocation.value,
+          eventDate.value,
+                          eventTime.value,payType.value,payRate.value,
+                          eventDesc.value,eventType.value,participantType.value,
+                          male.value,female.value,mixed.value,assignedTo.value)">Submit Button</button>
+          <button type="button" (click)="goBack()" class="btn btn-danger">Back</button>
+        </div>
+        <br/>
+        <br/>
+
+      </form>
+
+    </div>
+
+  </div>
+  <!-- /.row -->
+</div>

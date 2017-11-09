@@ -1,0 +1,36 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">My Staff</h4>
+                      </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-danger">
+                                <tr>
+                                    <th>Staff Id</th>
+                                    <th>Staff Name</th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let staffs of staffs">
+                                    <td>{{staffs.staffId}}</td>
+                                    <td>{{staffs.staffName}}</td>
+                                    <td>
+                                      <button type="button" class="btn btn-primary btn-sm" (click)="goto(staffs.Id)">View/Update</button>
+                                     </td>
+                                </tr>
+                            </tbody>
+                        </table>
+  
+                    </div>
+                </div>
+            </div>
+  
+        </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,71 @@
+<div class="bootstrap-iso">
+    <div class="container-fluid">
+        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left:20%">
+            <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
+  
+            <h1 style="text-align:center">Add staff</h1>
+            <hr/>
+            <form>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="username">
+                        Username
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" required #username id="username" name="username" type="text" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="password">
+                        Password
+                        <span class="asteriskField">
+                            *a
+                        </span>
+                    </label>
+                    <input class="form-control" #password id="password" name="password" type="password" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="staffName">
+                        Staff Name
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" #staffName id="staffName" name="staffName" type="text" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="contactNumber">
+                        Contact Number
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" #contactNumber id="contactNumber" name="contactNumber" type="text" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="email">
+                        Email
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" #email id="email" name="email" type="text" />
+                </div>
+                
+                <div class="form-group">
+                    <div style="text-align: center;float: none;">
+                        <button class="btn btn-primary "
+                        (click)="addStaff(username.value,password.value,staffName.value,contactNumber.value,
+                                          email.value)" 
+                        type="button">
+                            Add staff
+                        </button> 
+                        <button class="btn btn-danger" name="cancel" (click)="cancelConfirm()" type="cancel">
+                                Cancel
+                            </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>

@@ -1,3 +1,110 @@
-<p>
-  signup works!
-</p>
+<div class="bootstrap-iso">
+  <div class="container-fluid">
+      <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left:20%">
+          <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
+
+          <h1 style="text-align:center">Sign Up</h1>
+          <hr/>
+          <form >
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="username">
+                      Username
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" required #username id="username" name="username" type="text" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="password">
+                      Password
+                      <span class="asteriskField">
+                          *a
+                      </span>
+                  </label>
+                  <input class="form-control" #password id="password" name="password" type="password" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="adminName">
+                      Admin Name
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" #adminName id="adminName" name="adminName" type="text" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="contactNumber">
+                      Contact Number
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" #contactNumber id="contactNumber" name="contactNumber" type="text" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="email">
+                      Email
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" #email id="email" name="email" type="text" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="hotelName">
+                      Hotel Name
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" #hotelName id="hotelName" name="hotelName" type="text" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label " for="hotelTag">
+                      Hotel Tagline
+                  </label>
+                  <textarea class="form-control" #hotelTag id="hotelTag" name="hotelTag" rows="3"></textarea>
+              </div>
+              <div class="form-group ">
+                  <label class="control-label " for="hotelDesc">
+                      Hotel Description
+                  </label>
+                  <textarea class="form-control" #hotelDesc id="hotelDesc" name="hotelDesc" rows="3"></textarea>
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="hotelBranch">
+                      Hotel Branch
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" #hotelBranch id="hotelBranch" name="hotelBranch" type="text" />
+              </div>
+              <div class="form-group ">
+                  <label class="control-label requiredField" for="hotelLocation">
+                      Hotel Location
+                      <span class="asteriskField">
+                          *
+                      </span>
+                  </label>
+                  <input class="form-control" #hotelLocation id="hotelLocation" name="hotelLocation" type="text" />
+              </div>
+              <div class="form-group">
+                  <div style="text-align: center;float: none;">
+                      <button class="btn btn-primary " name="submit" 
+                      (click)="register(username.value,password.value,adminName.value,contactNumber.value,
+                                        email.value,hotelName.value,hotelTag.value,hotelDesc.value,
+                                        hotelBranch.value,hotelLocation.value)" 
+                      type="button">
+                          Register
+                      </button> 
+                      <button class="btn btn-danger" name="button" (click)="cancelConfirm()" type="cancel">
+                              Cancel
+                          </button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
