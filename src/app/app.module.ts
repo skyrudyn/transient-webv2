@@ -18,7 +18,7 @@ import { ServicesModule } from './services/services.module'
     FormsModule,
     HttpModule,
     RouterModule,
-    
+    // BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
     PagesModule,

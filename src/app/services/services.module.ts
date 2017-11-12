@@ -14,7 +14,7 @@ import { Injectable } from '@angular/core';
 })
 export class ServicesModule {
   constructor(private http:Http,private router:Router) { }
-  url = "https://banquetsservitor.pagekite.me/backendtransient";
+  url = "https://transientservitor-backend.000webhostapp.com";
   // url="localhost/backendtransient";
   headers = new Headers();
 

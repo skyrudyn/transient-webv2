@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServicesModule } from '../../../services/services.module'
-
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-createevent',
   templateUrl: './createevent.component.html',
@@ -17,8 +17,9 @@ export class CreateeventComponent implements OnInit {
   staff: any = [];
   participantTypes: any = [];
   createdBy = localStorage.getItem('username')
+  params: any;
   constructor(private router: Router, private toastr: ToastrService,
-    private service: ServicesModule) { }
+    private service: ServicesModule, private routerParam: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -30,16 +31,20 @@ export class CreateeventComponent implements OnInit {
       this.service.getStaff(localStorage.getItem('hotelId')).subscribe(res => {
         this.staff = res
       })
-      this.service.getParticipantType().subscribe(res => {
-        this.participantTypes = res;
-      })
+      // this.service.getParticipantType().subscribe(res => {
+      //   this.participantTypes = res;
+      // })
     } else {
       this.router.navigate(['/login'])
     }
 
+    this.routerParam.queryParams.subscribe(params =>{
+      if(params['eventid'])
+    }
+    )
   }
 
-  goBack(){
+  goBack() {
     this.router.navigate(['/home/event'])
   }
 
