@@ -1,5 +1,5 @@
 {
-  "name": "transient-servitor v2",
+  "name": "ng-admin",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -12,7 +12,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^5.0.1",
+    "@angular/animations": "^4.0.1",
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
     "@angular/core": "^4.0.0",
