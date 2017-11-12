@@ -39,7 +39,9 @@ export class CreateeventComponent implements OnInit {
     }
 
     this.routerParam.queryParams.subscribe(params =>{
-      if(params['eventid'])
+      if(params['eventid']){
+        
+      }
     }
     )
   }
