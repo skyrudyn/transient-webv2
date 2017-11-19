@@ -5,7 +5,7 @@
 
           <h1 style="text-align:center">Sign Up</h1>
           <hr/>
-          <form >
+          <form [formGroup]="sform">
               <div class="form-group ">
                   <label class="control-label requiredField" for="username">
                       Username
@@ -13,7 +13,7 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" required #username id="username" name="username" type="text" />
+                  <input class="form-control" formControlName="username" required #username id="username" name="username" type="text" />
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="password">
@@ -22,7 +22,7 @@
                           *a
                       </span>
                   </label>
-                  <input class="form-control" #password id="password" name="password" type="password" />
+                  <input class="form-control" formControlName="password" id="password" name="password" type="password" />
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="adminName">
@@ -31,7 +31,7 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" #adminName id="adminName" name="adminName" type="text" />
+                  <input class="form-control" formControlName="adminName" id="adminName" name="adminName" type="text" />
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="contactNumber">
@@ -40,7 +40,7 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" #contactNumber id="contactNumber" name="contactNumber" type="text" />
+                  <input class="form-control" formControlName="contactNumber" id="contactNumber" name="contactNumber" type="text" />
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="email">
@@ -49,7 +49,7 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" #email id="email" name="email" type="text" />
+                  <input class="form-control" formControlName="email" id="email" name="email" type="text" />
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="hotelName">
@@ -58,19 +58,19 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" #hotelName id="hotelName" name="hotelName" type="text" />
+                  <input class="form-control" id="hotelName" formControlName="hotelName" name="hotelName" type="text" />
               </div>
               <div class="form-group ">
                   <label class="control-label " for="hotelTag">
                       Hotel Tagline
                   </label>
-                  <textarea class="form-control" #hotelTag id="hotelTag" name="hotelTag" rows="3"></textarea>
+                  <textarea class="form-control" formControlName="hotelTag" id="hotelTag" name="hotelTag" rows="3"></textarea>
               </div>
               <div class="form-group ">
                   <label class="control-label " for="hotelDesc">
                       Hotel Description
                   </label>
-                  <textarea class="form-control" #hotelDesc id="hotelDesc" name="hotelDesc" rows="3"></textarea>
+                  <textarea class="form-control" formControlName="hotelDesc" id="hotelDesc" name="hotelDesc" rows="3"></textarea>
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="hotelBranch">
@@ -79,7 +79,7 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" #hotelBranch id="hotelBranch" name="hotelBranch" type="text" />
+                  <input class="form-control" formControlName="hotelBranch" id="hotelBranch" name="hotelBranch" type="text" />
               </div>
               <div class="form-group ">
                   <label class="control-label requiredField" for="hotelLocation">
@@ -88,14 +88,12 @@
                           *
                       </span>
                   </label>
-                  <input class="form-control" #hotelLocation id="hotelLocation" name="hotelLocation" type="text" />
+                  <input class="form-control" formControlName="hotelLocation" id="hotelLocation" name="hotelLocation" type="text" />
               </div>
               <div class="form-group">
                   <div style="text-align: center;float: none;">
                       <button class="btn btn-primary " name="submit" 
-                      (click)="register(username.value,password.value,adminName.value,contactNumber.value,
-                                        email.value,hotelName.value,hotelTag.value,hotelDesc.value,
-                                        hotelBranch.value,hotelLocation.value)" 
+                      (click)="register(sform.value)" 
                       type="button">
                           Register
                       </button> 

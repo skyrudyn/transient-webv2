@@ -4,11 +4,18 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header" data-background-color="red">
-                        <h4 class="title">My Staff</h4>
-                      </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="title">My Staff</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" (click)="goto(0)">Add New Staff</button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-content table-responsive">
                         <table class="table">
-                            <thead class="text-danger">
+                            <thead class="text-danger" item-width="10%">
                                 <tr>
                                     <th>Staff Id</th>
                                     <th>Staff Name</th>
@@ -20,17 +27,22 @@
                                     <td>{{staffs.staffId}}</td>
                                     <td>{{staffs.staffName}}</td>
                                     <td>
-                                      <button type="button" class="btn btn-primary btn-sm" (click)="goto(staffs.Id)">View/Update</button>
-                                     </td>
+                                        <button type="button" rel="tooltip" title="View/Update Staff" class="btn btn-danger btn-simple btn-xs" (click)="goto(staffs.staffId)">
+                                            <i class="material-icons">edit</i>
+                                        </button>
+                                        <button type="button" rel="tooltip" title="Remove Staff" class="btn btn-danger btn-simple btn-xs" (click)="delete(staffs.staffId)">
+                                            <i class="material-icons">close</i>
+                                        </button>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-  
+
                     </div>
                 </div>
             </div>
-  
+
         </div>
     </div>
-  </div>
-  
+</div>
+

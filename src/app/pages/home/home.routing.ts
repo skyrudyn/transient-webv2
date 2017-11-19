@@ -19,7 +19,7 @@ import { RatingComponent } from './rating/rating.component';
 import { CreateeventComponent } from './createevent/createevent.component';
 import { ManagestaffComponent } from './managestaff/managestaff.component';
 import { ViewapplicationComponent } from './viewapplication/viewapplication.component';
-
+import { EventHistoryComponent } from './event-history/event-history.component';
 
 const routes: Routes = [
   {
@@ -28,6 +28,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'event', component: EventComponent },
       { path: 'manage-event', component: CreateeventComponent },
+      { path: 'event-history', component: EventHistoryComponent },
       { path: 'staff-management', component: StaffManagementComponent },
       { path: 'manage-staff', component: ManagestaffComponent },
       { path: 'applications', component: ApplicationComponent },

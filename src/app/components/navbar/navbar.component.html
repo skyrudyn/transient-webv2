@@ -8,13 +8,16 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand">{{getTitle()}}</a>
+            <span class="navbar-brand" style="float:right">{{username}}</span>
         </div>
+
+       
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a>
                        <i class="material-icons" (click)="logout()">power_settings_new</i>
-                       <p class="hidden-lg hidden-md">Profile</p>
+                       <p class="hidden-lg hidden-md">{{username}}</p>
                     </a>
                 </li>
             </ul>

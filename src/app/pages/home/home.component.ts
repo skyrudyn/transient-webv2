@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('LoggedIn') == '1'){
+    if(sessionStorage.getItem('LoggedIn') == '1'){
 
     }else{
       this.router.navigate(['/login'])

@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
     private listTitles: any[];
     location: Location;
+    username:any;
 
     constructor(location: Location,private router:Router) {
       this.location = location;
@@ -18,6 +19,7 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(){
       this.listTitles = ROUTES.filter(listTitle => listTitle);
+      this.username = sessionStorage.getItem('username');
     }
 
     getTitle(){
@@ -36,7 +38,7 @@ export class NavbarComponent implements OnInit {
 
     logout(){
       console.log("logout clicked")
-      localStorage.clear()
+      sessionStorage.clear()
       this.router.navigate(['/login'])
     }
 }

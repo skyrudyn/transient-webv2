@@ -29,8 +29,13 @@
                                   <td>{{events.eventLocation}}</td>
                                   <td>{{events.eventDate}}</td>
                                   <td>
-                                    <button type="button" class="btn btn-primary btn-sm" (click)="goto(2,events.eventId)">View/Update</button>
-                                   </td>
+                                    <button type="button" rel="tooltip" title="View/Update Event"  class="btn btn-danger btn-simple btn-xs" (click)="goto(2,events.eventId)">  
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                    <button type="button" rel="tooltip" title="Delete Event"  class="btn btn-danger btn-simple btn-xs" (click)="delete(events.eventId)">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                </td>
                               </tr>
                           </tbody>
                       </table>

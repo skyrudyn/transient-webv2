@@ -14,13 +14,13 @@ events:any=[]
     this.getEvents();
   }
   getEvents() {
-    if (localStorage.getItem('staffId') == null) {
+    if (sessionStorage.getItem('hotelId') == null) {
       let data = 0;
       this.service.getEvent(data).subscribe(res => {
         this.events = res;
       })
     } else {
-      let data = localStorage.getItem('staffId');
+      let data = sessionStorage.getItem('hotelId');
       this.service.getEvent(data).subscribe(res => {
         this.events = res;
       })
@@ -29,8 +29,10 @@ events:any=[]
   goto(n,id = null){
     if(n == '1' || n == 1 && id == null){
       this.router.navigate(['/home/manage-event'])
+      sessionStorage.setItem('eventId','null')
     }else{
-      this.router.navigate(['/home/manage-event'], { queryParams: { eventid: id } });
+      this.router.navigate(['/home/manage-event']);
+      sessionStorage.setItem('eventId',id)
     }
   }
 }

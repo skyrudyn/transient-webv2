@@ -1,4 +1,4 @@
-<div class="bootstrap-iso">
+<div class="bootstrap-iso" *ngIf="!view">
     <div class="container-fluid">
         <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left:20%">
             <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
@@ -64,6 +64,71 @@
                                 Cancel
                             </button>
                     </div>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  <div class="bootstrap-iso" *ngIf="view">
+    <div class="container-fluid">
+        <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left:20%">
+            <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
+  
+            <h1 style="text-align:center">Update staff</h1>
+            <hr/>
+            <form [formGroup]="updateform">
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="username">
+                        Username
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" required formControlName="username" [disabled]="!edit" id="username" name="username" type="text" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="password">
+                        Password
+                        <span class="asteriskField">
+                            *a
+                        </span>
+                    </label>
+                    <input class="form-control" formControlName="password" [disabled]="!edit" id="password" name="password" type="password" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="staffName">
+                        Staff Name
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" formControlName="staffName" [disabled]="!edit" id="staffName" name="staffName" type="text" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="contactNumber">
+                        Contact Number
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" formControlName="contactNumber" [disabled]="!edit"  id="contactNumber" name="contactNumber" type="text" />
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="email">
+                        Email
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <input class="form-control" formControlName="email" [disabled]="!edit"  id="email" name="email" type="text" />
+                </div>
+                
+                <div class="form-group">
+                    <div style="text-align:center">
+                        <button type="submit" class="btn btn-primary" *ngIf="!edit" (click)="enableEdit()">Edit</button>
+                        <button type="submit" class="btn btn-primary" *ngIf="edit" (click)="updateStaff(updateform.value)">Save</button>
+                        <button type="submit" (click)="goBack()" class="btn btn-danger">Back</button>
+                      </div>
                 </div>
             </form>
         </div>

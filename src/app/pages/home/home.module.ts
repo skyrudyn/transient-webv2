@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { ComponentsModule } from '../../components/components.module';
 import { HomeRoutingModule } from './home.routing';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './home.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -22,6 +22,7 @@ import { RatingComponent } from './rating/rating.component';
 import { CreateeventComponent } from './createevent/createevent.component';
 import { ManagestaffComponent } from './managestaff/managestaff.component';
 import { ViewapplicationComponent } from './viewapplication/viewapplication.component';
+import { EventHistoryComponent } from './event-history/event-history.component';
 
 @NgModule({
   imports: [
@@ -31,6 +32,8 @@ import { ViewapplicationComponent } from './viewapplication/viewapplication.comp
     ComponentsModule,
     HomeRoutingModule,
     RouterModule,
+    FormsModule, 
+    ReactiveFormsModule
   ],
   declarations: [
     HomeComponent, 
@@ -41,7 +44,15 @@ import { ViewapplicationComponent } from './viewapplication/viewapplication.comp
     IconsComponent, 
     MapsComponent, 
     NotificationsComponent, 
-    UpgradeComponent, EventComponent, StaffManagementComponent, ApplicationComponent, RatingComponent, CreateeventComponent, ManagestaffComponent, ViewapplicationComponent,
+    UpgradeComponent, 
+    EventComponent, 
+    StaffManagementComponent, 
+    ApplicationComponent, 
+    RatingComponent, 
+    CreateeventComponent, 
+    ManagestaffComponent, 
+    ViewapplicationComponent, 
+    EventHistoryComponent,
   ]
 })
 export class HomeModule { }

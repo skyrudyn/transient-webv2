@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
     if (this.location.path() == '/home') {
       console.log(this.location.path())
       this.router.navigate(['/home/dashboard']);
-    }else if(this.location.path() == 'login'){
+    }else if(this.location.path() == 'login' || this.location.path() == ''){
       this.router.navigate(['/login'])
       console.log(this.location.path())
     }

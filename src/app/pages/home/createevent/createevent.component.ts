@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ServicesModule } from '../../../services/services.module'
 import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-createevent',
   templateUrl: './createevent.component.html',
@@ -16,40 +17,93 @@ export class CreateeventComponent implements OnInit {
   eventTypes: any = [];
   staff: any = [];
   participantTypes: any = [];
-  createdBy = localStorage.getItem('username')
+  createdBy = sessionStorage.getItem('staffId')
   params: any;
+  today: any;
+  forms: any;
+  view: boolean = false;
+  edit: boolean = false;
+  ceform: FormGroup;
+  eventId: any;
   constructor(private router: Router, private toastr: ToastrService,
-    private service: ServicesModule, private routerParam: ActivatedRoute) { }
+    private service: ServicesModule, private routerParam: ActivatedRoute,
+    private fb: FormBuilder) {
+    this.ceform = fb.group({
+      'eventName': [null, Validators.required],
+      'eventLocation': [null, Validators.required],
+      'eventDate': [null, Validators.required],
+      'eventTime': [null, Validators.required],
+      'payType': [null, Validators.required],
+      'payRate': [null, Validators.required],
+      'eventDesc': [null, Validators.required],
+      'eventType': [null, Validators.required],
+      'participantType': [null, Validators.required],
+      'male': [null, Validators.required],
+      'female': [null, Validators.required],
+      'mixed': [null, Validators.required],
+      'assignedTo': [null, Validators.required]
+    });
+  }
 
 
   ngOnInit() {
-    if (localStorage.getItem('LoggedIn') == '1') {
+    if (sessionStorage.getItem('LoggedIn') == '1') {
       let self = this;
       this.service.getType().subscribe(res => {
         self.eventTypes = res;
       })
-      this.service.getStaff(localStorage.getItem('hotelId')).subscribe(res => {
+      this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
         this.staff = res
       })
-      // this.service.getParticipantType().subscribe(res => {
-      //   this.participantTypes = res;
-      // })
+      this.service.getParticipantType().subscribe(res => {
+        this.participantTypes = res;
+      })
+
+      this.today = new Date().toJSON().split('T')[0];
     } else {
       this.router.navigate(['/login'])
     }
-
-    this.routerParam.queryParams.subscribe(params =>{
-      if(params['eventid']){
-        
-      }
+    
+    if (sessionStorage.getItem('eventId') == 'null') {
+      this.view = true;
+      
+    } else if(sessionStorage.getItem('eventId') !== 'null'){
+      this.eventId = sessionStorage.getItem('eventId');
+      this.view = false;
+      let self = this;
+      this.service.viewEvent(sessionStorage.getItem('eventId')).subscribe(res => {
+        self.forms = res;
+        self.forms.forEach(element => {
+          self.ceform.get('eventName').patchValue(element.eventName)
+          self.ceform.get('eventLocation').patchValue(element.eventLocation)
+          self.ceform.get('eventDate').patchValue(element.eventDate)
+          self.ceform.get('eventTime').patchValue(element.eventTime)
+          self.ceform.get('payType').patchValue(element.payType)
+          self.ceform.get('payRate').patchValue(element.payRate)
+          self.ceform.get('eventDesc').patchValue(element.eventDesc)
+          self.ceform.get('eventType').patchValue(element.eventType)
+          self.ceform.get('participantType').patchValue(element.participantType)
+          self.change(element.participantType);
+          self.ceform.get('male').patchValue(element.male)
+          self.ceform.get('female').patchValue(element.female)
+          self.ceform.get('mixed').patchValue(element.mixed)
+          self.ceform.get('assignedTo').patchValue(element.assignedTo)
+        });
+        self.ceform.disable();
+      })
     }
-    )
+
+
   }
 
   goBack() {
     this.router.navigate(['/home/event'])
   }
-
+  enableEdit() {
+    this.edit = true;
+    this.ceform.enable();
+    this.toastr.info("Event is editable");
+  }
   change(n) {
     console.log(n)
     if (n == 1) {
@@ -71,79 +125,75 @@ export class CreateeventComponent implements OnInit {
     }
     console.log(this.male, this.female, this.mixed)
   }
-  create(eventName, eventLocation, eventDate,
-    eventTime, payType, payRate,
-    eventDesc, eventType, participantType,
-    male, female, mixed, assignTo) {
-    console.log(payType)
+  create(cefrom, i) {
     this.formError = false;
-    if (eventName == "") {
+    if (cefrom.eventName == "") {
       this.toastr.error("Event Name cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (eventLocation == "") {
+    if (cefrom.eventLocation == "") {
       this.toastr.error("Event Location cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (eventDate == "") {
+    if (cefrom.eventDate == "") {
       this.toastr.error("Event Date cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (eventTime == "") {
+    if (cefrom.eventTime == "") {
       this.toastr.error("Event Time cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (payType == "") {
+    if (cefrom.payType == "") {
       this.toastr.error("Pay Type cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (payRate == "") {
+    if (cefrom.payRate == "") {
       this.toastr.error("Pay Rate cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (eventDesc == "") {
+    if (cefrom.eventDesc == "") {
       this.toastr.error("Event Description cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (eventType == "") {
+    if (cefrom.eventType == "") {
       this.toastr.error("Please choose Event Type", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (participantType == "") {
+    if (cefrom.participantType == "") {
       this.toastr.error("Please choose Participant Type", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (male == "" && (participantType == 3 || participantType == 1)) {
+    if (cefrom.male == "" && (cefrom.participantType == 3 || cefrom.participantType == 1)) {
       this.toastr.error("Male participant number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (female == "" && (participantType == 3 || participantType == 2)) {
+    if (cefrom.female == "" && (cefrom.participantType == 3 || cefrom.participantType == 2)) {
       this.toastr.error("Female participant number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (mixed == "" && participantType == 4) {
+    if (cefrom.mixed == "" && cefrom.participantType == 4) {
       this.toastr.error("Mixed pariticipant number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (assignTo == "") {
+    if (cefrom.assignedTo == "") {
       this.toastr.error("Please assign event to a staff", "", { timeOut: 3000 });
       this.formError = true;
     }
 
-    if (!this.formError) {
-      let eventForm = 'eventName=' + eventName +
-        '&eventLocation=' + eventLocation +
-        '&eventDate=' + eventDate +
-        '&eventTime=' + eventTime +
-        '&payType=' + payType +
-        '&payRate=' + payRate +
-        '&eventDesc=' + eventDesc +
-        '&eventType=' + eventType +
-        '&participantType=' + participantType +
-        '&male=' + male +
-        '&female=' + female +
-        '&mixed=' + mixed +
-        '&assignTo=' + assignTo +
+    if (!this.formError && i == 1) {
+      let eventForm = 'eventName=' + cefrom.eventName +
+        '&eventLocation=' + cefrom.eventLocation +
+        '&eventDate=' + cefrom.eventDate +
+        '&eventTime=' + cefrom.eventTime +
+        '&payType=' + cefrom.payType +
+        '&payRate=' + cefrom.payRate +
+        '&eventDesc=' + cefrom.eventDesc +
+        '&eventType=' + cefrom.eventType +
+        '&participantType=' + cefrom.participantType +
+        '&male=' + cefrom.male +
+        '&female=' + cefrom.female +
+        '&mixed=' + cefrom.mixed +
+        '&assignTo=' + cefrom.assignedTo +
         '&createdBy=' + this.createdBy
       this.service.createEvent(eventForm).subscribe(res => {
         if (res.successful) {
@@ -155,6 +205,119 @@ export class CreateeventComponent implements OnInit {
       }, error => {
         this.toastr.error("Service temporarily not available...", "", { timeOut: 3000 })
       })
+    } else if (!this.formError && i == 2) {
+      let updateForm = 'eventName=' + cefrom.eventName +
+        '&eventLocation=' + cefrom.eventLocation +
+        '&eventDate=' + cefrom.eventDate +
+        '&eventTime=' + cefrom.eventTime +
+        '&payType=' + cefrom.payType +
+        '&payRate=' + cefrom.payRate +
+        '&eventDesc=' + cefrom.eventDesc +
+        '&eventType=' + cefrom.eventType +
+        '&participantType=' + cefrom.participantType +
+        '&male=' + cefrom.male +
+        '&female=' + cefrom.female +
+        '&mixed=' + cefrom.mixed +
+        '&assignTo=' + cefrom.assignedTo +
+        '&createdBy=' + this.createdBy +
+        '&eventId=' + this.eventId;
+      this.service.updateEvent(updateForm).subscribe(res => {
+        if (res.successful) {
+          this.toastr.success(res.message, "", { timeOut: 3000 })
+          this.router.navigate(['/home/event']);
+        } else {
+          this.toastr.error(res.error, "", { timeOut: 3000 })
+        }
+      }, error => {
+        this.toastr.error("Service temporarily not available...", "", { timeOut: 3000 })
+      })
+    }else{
+      this.toastr.error("Form input error", "", { timeOut: 3000 })
+    
     }
+    // } else {
+    //   this.formError = false;
+    //   if (eventName == "") {
+    //     this.toastr.error("Event Name cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (eventLocation == "") {
+    //     this.toastr.error("Event Location cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (eventDate == "") {
+    //     this.toastr.error("Event Date cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (eventTime == "") {
+    //     this.toastr.error("Event Time cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (payType == "") {
+    //     this.toastr.error("Pay Type cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (payRate == "") {
+    //     this.toastr.error("Pay Rate cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (eventDesc == "") {
+    //     this.toastr.error("Event Description cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (eventType == "") {
+    //     this.toastr.error("Please choose Event Type", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (participantType == "") {
+    //     this.toastr.error("Please choose Participant Type", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (male == "" && (participantType == 3 || participantType == 1)) {
+    //     this.toastr.error("Male participant number cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (female == "" && (participantType == 3 || participantType == 2)) {
+    //     this.toastr.error("Female participant number cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (mixed == "" && participantType == 4) {
+    //     this.toastr.error("Mixed pariticipant number cannot be empty", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+    //   if (assignTo == "") {
+    //     this.toastr.error("Please assign event to a staff", "", { timeOut: 3000 });
+    //     this.formError = true;
+    //   }
+
+    //   if (!this.formError) {
+    //     let updateForm = 'eventName=' + eventName +
+    //       '&eventLocation=' + eventLocation +
+    //       '&eventDate=' + eventDate +
+    //       '&eventTime=' + eventTime +
+    //       '&payType=' + payType +
+    //       '&payRate=' + payRate +
+    //       '&eventDesc=' + eventDesc +
+    //       '&eventType=' + eventType +
+    //       '&participantType=' + participantType +
+    //       '&male=' + male +
+    //       '&female=' + female +
+    //       '&mixed=' + mixed +
+    //       '&assignTo=' + assignTo +
+    //       '&createdBy=' + this.createdBy +
+    //       '&eventId=' + localStorage.getItem('eventId');
+    //     this.service.updateEvent(updateForm).subscribe(res => {
+    //       if (res.successful) {
+    //         this.toastr.success(res.message, "", { timeOut: 3000 })
+    //         this.router.navigate(['/home/event']);
+    //       } else {
+    //         this.toastr.error(res.error, "", { timeOut: 3000 })
+    //       }
+    //     }, error => {
+    //       this.toastr.error("Service temporarily not available...", "", { timeOut: 3000 })
+    //     })
+    //   }
+    // }
   }
+
 }

@@ -1,0 +1,5 @@
+.input-box { position: relative; }
+
+.inputs { display: block; border: 0px solid; background: #EDEDEF; padding: 9px 5px 12px 32px; width: 680px; }
+
+.unit { position: absolute; display: block; left: 5px; top: 10px; z-index: 9; }
