@@ -8,10 +8,14 @@ import { Router } from '@angular/router'
 })
 export class EventComponent implements OnInit {
 events:any=[]
+staffs:any;
   constructor(private service:ServicesModule, private router:Router) { }
 
   ngOnInit() {
     this.getEvents();
+    this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res=>{
+      this.staffs =res
+      })
   }
   getEvents() {
     if (sessionStorage.getItem('hotelId') == null) {

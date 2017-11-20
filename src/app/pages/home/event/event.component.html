@@ -20,6 +20,7 @@
                                   <th>Event Name</th>
                                   <th>Event Location</th>
                                   <th>Event Date</th>
+                                  <th>Assigned Staff</th>
                                   <th>Action </th>
                               </tr>
                           </thead>
@@ -28,6 +29,7 @@
                                   <td>{{events.eventName}}</td>
                                   <td>{{events.eventLocation}}</td>
                                   <td>{{events.eventDate}}</td>
+                                  <ng-container style="margin:auto" *ngFor="let staffs of staffs"><td  *ngIf="staffs.staffId == events.assignedTo">{{staffs.username}}</td></ng-container>
                                   <td>
                                     <button type="button" rel="tooltip" title="View/Update Event"  class="btn btn-danger btn-simple btn-xs" (click)="goto(2,events.eventId)">  
                                         <i class="material-icons">edit</i>

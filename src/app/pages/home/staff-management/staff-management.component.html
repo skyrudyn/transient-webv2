@@ -7,6 +7,8 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <h4 class="title">My Staff</h4>
+                                <p class="title">Registered Staff : <span class="badge label label-success"> {{numberOfStaff}}</span></p>
+                                
                             </div>
                             <div class="col-md-4">
                                 <button type="button" class="btn btn-primary" (click)="goto(0)">Add New Staff</button>
@@ -17,7 +19,7 @@
                         <table class="table">
                             <thead class="text-danger" item-width="10%">
                                 <tr>
-                                    <th>Staff Id</th>
+                                    <th>Number</th>
                                     <th>Staff Name</th>
                                     <th>Action </th>
                                 </tr>

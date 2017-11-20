@@ -10,12 +10,16 @@ import { Router } from '@angular/router';
 export class StaffManagementComponent implements OnInit {
 staffs:any;
 closeResult:any;
+numberOfStaff:any;
+i:number = 0;
   constructor(private toastr: ToastrService, private service: ServicesModule,
               private router:Router) { }
 
   ngOnInit() {
+    let self:this;
     this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res=>{
       this.staffs =res
+      this.numberOfStaff = this.staffs.length;
       })
   }
   goto(n){
