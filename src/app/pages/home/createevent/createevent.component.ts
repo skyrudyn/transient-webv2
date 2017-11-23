@@ -17,7 +17,7 @@ export class CreateeventComponent implements OnInit {
   eventTypes: any = [];
   staff: any = [];
   participantTypes: any = [];
-  createdBy = sessionStorage.getItem('staffId')
+  createdBy = sessionStorage.getItem('hotelId')
   params: any;
   today: any;
   forms: any;
@@ -41,7 +41,9 @@ export class CreateeventComponent implements OnInit {
       'male': [null, Validators.required],
       'female': [null, Validators.required],
       'mixed': [null, Validators.required],
-      'assignedTo': [null, Validators.required]
+      'assignedTo': [null, Validators.required],
+      'eventPublishDate': [null, Validators.required],
+      'eventCloseDate': [null, Validators.required]
     });
   }
 
@@ -88,6 +90,8 @@ export class CreateeventComponent implements OnInit {
           self.ceform.get('female').patchValue(element.female)
           self.ceform.get('mixed').patchValue(element.mixed)
           self.ceform.get('assignedTo').patchValue(element.assignedTo)
+          self.ceform.get('eventPublishDate').patchValue(element.eventPublishDate)
+          self.ceform.get('eventCloseDate').patchValue(element.eventCloseDate)
         });
         self.ceform.disable();
       })
@@ -126,57 +130,66 @@ export class CreateeventComponent implements OnInit {
     console.log(this.male, this.female, this.mixed)
   }
   create(cefrom, i) {
+    console.log("logging",cefrom);
     this.formError = false;
-    if (cefrom.eventName == "") {
+    if (cefrom.eventName == null) {
       this.toastr.error("Event Name cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.eventLocation == "") {
+    if (cefrom.eventLocation == null) {
       this.toastr.error("Event Location cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.eventDate == "") {
+    if (cefrom.eventDate == null) {
       this.toastr.error("Event Date cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.eventTime == "") {
+    if (cefrom.eventTime == null) {
       this.toastr.error("Event Time cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.payType == "") {
+    if (cefrom.payType == null) {
       this.toastr.error("Pay Type cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.payRate == "") {
+    if (cefrom.payRate ==null) {
       this.toastr.error("Pay Rate cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.eventDesc == "") {
+    if (cefrom.eventDesc == null) {
       this.toastr.error("Event Description cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.eventType == "") {
+    if (cefrom.eventType == null) {
       this.toastr.error("Please choose Event Type", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.participantType == "") {
+    if (cefrom.participantType == null) {
       this.toastr.error("Please choose Participant Type", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.male == "" && (cefrom.participantType == 3 || cefrom.participantType == 1)) {
+    if (cefrom.male == null && (cefrom.participantType == 3 || cefrom.participantType == 1)) {
       this.toastr.error("Male participant number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.female == "" && (cefrom.participantType == 3 || cefrom.participantType == 2)) {
+    if (cefrom.female == null && (cefrom.participantType == 3 || cefrom.participantType == 2)) {
       this.toastr.error("Female participant number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.mixed == "" && cefrom.participantType == 4) {
+    if (cefrom.mixed == null && cefrom.participantType == 4) {
       this.toastr.error("Mixed pariticipant number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.assignedTo == "") {
+    if (cefrom.assignedTo == null) {
       this.toastr.error("Please assign event to a staff", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (cefrom.eventPublishDate == null) {
+      this.toastr.error("Please set Event Publish Date", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (cefrom.eventCloseDate == null) {
+      this.toastr.error("Please set Event Close Date", "", { timeOut: 3000 });
       this.formError = true;
     }
 
@@ -194,11 +207,14 @@ export class CreateeventComponent implements OnInit {
         '&female=' + cefrom.female +
         '&mixed=' + cefrom.mixed +
         '&assignTo=' + cefrom.assignedTo +
+        '&eventPublishDate=' + cefrom.eventPublishDate +
+        '&eventCloseDate=' + cefrom.eventCloseDate +
         '&createdBy=' + this.createdBy
+        let self=this
       this.service.createEvent(eventForm).subscribe(res => {
         if (res.successful) {
           this.toastr.success(res.message, "", { timeOut: 3000 })
-          this.router.navigate(['/home/event']);
+          self.router.navigate(['/home/event']);
         } else {
           this.toastr.error(res.error, "", { timeOut: 3000 })
         }
@@ -219,12 +235,15 @@ export class CreateeventComponent implements OnInit {
         '&female=' + cefrom.female +
         '&mixed=' + cefrom.mixed +
         '&assignTo=' + cefrom.assignedTo +
+        '&eventPublishDate=' + cefrom.eventPublishDate +
+        '&eventCloseDate=' + cefrom.eventCloseDate +
         '&createdBy=' + this.createdBy +
         '&eventId=' + this.eventId;
+        let self=this
       this.service.updateEvent(updateForm).subscribe(res => {
         if (res.successful) {
           this.toastr.success(res.message, "", { timeOut: 3000 })
-          this.router.navigate(['/home/event']);
+          self.router.navigate(['/home/event']);
         } else {
           this.toastr.error(res.error, "", { timeOut: 3000 })
         }

@@ -64,25 +64,25 @@ export class ManagestaffComponent implements OnInit {
     this.toastr.info("Staff is editable");
   }
   updateStaff(updateforms) {
-    console.log("comes")
+    console.log("comes",updateforms)
     this.formError = false;
-    if (updateforms.username == "") {
+    if (updateforms.username == null) {
       this.toastr.error("Username cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (updateforms.password == "") {
+    if (updateforms.password == null) {
       this.toastr.error("Password cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (updateforms.staffName == "") {
+    if (updateforms.staffName == null) {
       this.toastr.error("Staff Name cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (updateforms.contactNumber == "") {
+    if (updateforms.contactNumber == null) {
       this.toastr.error("Contact Number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (updateforms.email == "") {
+    if (updateforms.email == null) {
       this.toastr.error("Email cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }

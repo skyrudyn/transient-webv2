@@ -12,6 +12,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class SignupComponent implements OnInit {
   formError: any;
   sform: FormGroup;
+  show:boolean = false;
   constructor(private router: Router, private service: ServicesModule,
     private toastr: ToastrService, private fb: FormBuilder) {
     this.sform = fb.group({
@@ -31,41 +32,44 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     sessionStorage.clear();
   }
+  shows(){
+    console.log(this.show)
+  }
   cancelConfirm() {
     sessionStorage.clear
     this.router.navigate(['/login'])
   }
   register(sform) {
     this.formError = false;
-    if (sform.username == "") {
+    if (sform.username == null) {
       this.toastr.error("Username cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.password == "") {
+    if (sform.password == null) {
       this.toastr.error("Password cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.adminName == "") {
+    if (sform.adminName == null) {
       this.toastr.error("Admin Name cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.contactNumber == "") {
+    if (sform.contactNumber == null) {
       this.toastr.error("Contact Number cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.email == "") {
+    if (sform.email == null) {
       this.toastr.error("Email cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.hotelName == "") {
+    if (sform.hotelName == null) {
       this.toastr.error("Hotel Name cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.hotelBranch == "") {
+    if (sform.hotelBranch == null) {
       this.toastr.error("Hotel Branch cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (sform.hotelLocation == "") {
+    if (sform.hotelLocation == null) {
       this.toastr.error("Hotel Location cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }

@@ -1,0 +1,27 @@
+<div style="text-align:center;padding-top:10%;padding-bottom:10%;padding-left:33%;padding-right:30%;">
+
+  <div class="container">
+    <div class="login-page">
+      <div class="col-md-5 col-sm-5">
+        <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
+        <h1 style="text-align: center;">Admin Login</h1>
+        <hr/>
+        <form>
+          <div class="form-content" [formGroup]="lform">
+            <div class="form-group">
+              <input type="text" formControlName="username" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Username">
+            </div>
+            <div *ngIf="username?.error || username?.invalid">err</div>
+            <div class="form-group">
+              <input type="password" formControlName="password" class="form-control input-underline input-lg" id="" placeholder="Password">
+            </div>
+          </div>
+          <div style="text-align:center">
+            <button class="btn btn-primary" type="button" (click)="login(lform.value)"> Log in </button>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

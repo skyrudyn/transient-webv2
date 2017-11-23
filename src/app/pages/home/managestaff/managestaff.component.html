@@ -1,9 +1,10 @@
+<br/><br/>
 <div class="bootstrap-iso" *ngIf="!view">
     <div class="container-fluid">
         <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left:20%">
             <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
   
-            <h1 style="text-align:center">Add staff</h1>
+            <h3 style="text-align:center"> <strong>Add staff </strong></h3>
             <hr/>
             <form>
                 <div class="form-group ">
@@ -19,7 +20,7 @@
                     <label class="control-label requiredField" for="password">
                         Password
                         <span class="asteriskField">
-                            *a
+                            *
                         </span>
                     </label>
                     <input class="form-control" #password id="password" name="password" type="password" />
@@ -60,21 +61,21 @@
                         type="button">
                             Add staff
                         </button> 
-                        <button class="btn btn-danger" name="cancel" (click)="cancelConfirm()" type="cancel">
-                                Cancel
-                            </button>
+                        <button type="submit" (click)="goBack()" class="btn btn-danger">Back</button>
+                        
                     </div>
                 </div>
             </form>
         </div>
     </div>
   </div>
+
   <div class="bootstrap-iso" *ngIf="view">
     <div class="container-fluid">
         <div class="col-md-6 col-sm-6 col-xs-12" style="margin-left:20%">
             <!-- <img src="assets/images/logo.png" width="150px;" style="display: block;margin: 0 auto;" class="user-avatar" /> -->
   
-            <h1 style="text-align:center">Update staff</h1>
+            <h3 style="text-align:center"><strong>Update staff</strong></h3>
             <hr/>
             <form [formGroup]="updateform">
                 <div class="form-group ">

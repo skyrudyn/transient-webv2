@@ -7,7 +7,7 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <h4 class="title">My Staff</h4>
-                                <p class="title">Registered Staff : <span class="badge label label-success"> {{numberOfStaff}}</span></p>
+                                <p class="title" *ngIf="numberOfStaff != null">Registered Staff : <span class="badge label label-success"> {{numberOfStaff}}</span></p>
                                 
                             </div>
                             <div class="col-md-4">
@@ -19,7 +19,7 @@
                         <table class="table">
                             <thead class="text-danger" item-width="10%">
                                 <tr>
-                                    <th>Number</th>
+                                    <th>Staff Id</th>
                                     <th>Staff Name</th>
                                     <th>Action </th>
                                 </tr>

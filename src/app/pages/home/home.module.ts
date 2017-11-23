@@ -23,6 +23,7 @@ import { CreateeventComponent } from './createevent/createevent.component';
 import { ManagestaffComponent } from './managestaff/managestaff.component';
 import { ViewapplicationComponent } from './viewapplication/viewapplication.component';
 import { EventHistoryComponent } from './event-history/event-history.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 @NgModule({
   imports: [
@@ -52,7 +53,7 @@ import { EventHistoryComponent } from './event-history/event-history.component';
     CreateeventComponent, 
     ManagestaffComponent, 
     ViewapplicationComponent, 
-    EventHistoryComponent,
+    EventHistoryComponent, DashboardAdminComponent,
   ]
 })
 export class HomeModule { }

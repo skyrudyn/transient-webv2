@@ -17,6 +17,8 @@ export class SidebarComponent implements OnInit {
     $.getScript('../../assets/js/sidebar-moving-tab.js');
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.displayText = sessionStorage.getItem('hotelName');
+    let user =  sessionStorage.getItem('user');
+    console.log(user)
   }
 
 }

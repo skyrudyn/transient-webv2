@@ -20,14 +20,16 @@ import { CreateeventComponent } from './createevent/createevent.component';
 import { ManagestaffComponent } from './managestaff/managestaff.component';
 import { ViewapplicationComponent } from './viewapplication/viewapplication.component';
 import { EventHistoryComponent } from './event-history/event-history.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 
 const routes: Routes = [
   {
     path: 'home', component: HomeComponent,
     children: [
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'dashboard-admin', component: DashboardAdminComponent },
       { path: 'event', component: EventComponent },
-      { path: 'manage-event', component: CreateeventComponent },
+      { path: 'create-event', component: CreateeventComponent },
       { path: 'event-history', component: EventHistoryComponent },
       { path: 'staff-management', component: StaffManagementComponent },
       { path: 'manage-staff', component: ManagestaffComponent },

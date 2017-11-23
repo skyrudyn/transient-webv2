@@ -6,12 +6,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
-// import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { AdminLoginComponent } from './pages/admin-login/admin-login.component';
 
 
 const routes: Routes =[
       { path: 'home',      component: HomeComponent },
       { path: 'login',     component: LoginComponent },
+      { path: 'admin-login',    component: AdminLoginComponent },
       { path: 'signup',    component: SignupComponent },
       { path: '',          redirectTo: 'home', pathMatch: 'full' },
       // { path: '**',        component: NotFoundComponent },

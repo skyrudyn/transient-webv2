@@ -7,6 +7,7 @@ import { SignupComponent } from './signup/signup.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AdminLoginComponent } from './admin-login/admin-login.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -17,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   declarations: [
     LoginComponent, 
     SignupComponent, 
-    NotFoundComponent,
+    NotFoundComponent, AdminLoginComponent,
   ]
 })
 export class PagesModule { }
