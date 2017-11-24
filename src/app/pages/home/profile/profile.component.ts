@@ -32,12 +32,13 @@ export class ProfileComponent implements OnInit {
     this.usertype = sessionStorage.getItem('user');
     this.hotelName = sessionStorage.getItem('hotelName');
     this.name = sessionStorage.getItem('username');
-    if (sessionStorage.getItem('staffId') != null) {
-      this.id = sessionStorage.getItem('staffId');
-    } else if (sessionStorage.getItem('adminId') != null) {
-      this.id = sessionStorage.getItem('adminId')
-    }
-
+    // if (sessionStorage.getItem('staffId') != null) {
+    //   this.id = sessionStorage.getItem('staffId');
+    // } else if (sessionStorage.getItem('adminId') != null) {
+    //   this.id = sessionStorage.getItem('adminId')
+    // }
+    this.id = sessionStorage.getItem('id');
+    
     if (this.usertype != null) {
       let self = this;
       this.service.getProfile(this.usertype, this.id).subscribe(res => {

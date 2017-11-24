@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('username', res.username)
           sessionStorage.setItem('hotelName', res.hotelName)
           sessionStorage.setItem('adminId', res.adminId)
-          sessionStorage.setItem('staffId', null)
           sessionStorage.setItem('hotelId', res.hotelId)
           sessionStorage.setItem('userEmail', res.userEmail)
           sessionStorage.setItem('contactNumber', res.contactNumber)
           sessionStorage.setItem('user', res.user);
+          sessionStorage.setItem('id',res.adminId)
           sessionStorage.setItem('LoggedIn', '1');
           this.router.navigate(['/home/dashboard']);
 
@@ -54,10 +54,10 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userEmail', res.userEmail)
           sessionStorage.setItem('contactNumber', res.contactNumber)
           sessionStorage.setItem('staffId', res.staffId)
-          sessionStorage.setItem('adminId', null)
           sessionStorage.setItem('user', res.user);
           sessionStorage.setItem('LoggedIn', '1');
           this.router.navigate(['/home/dashboard']);
+          sessionStorage.setItem('id',res.staffId)
 
         }
         else {
