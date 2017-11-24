@@ -38,7 +38,7 @@ export class ProfileComponent implements OnInit {
     //   this.id = sessionStorage.getItem('adminId')
     // }
     this.id = sessionStorage.getItem('id');
-    
+
     if (this.usertype != null) {
       let self = this;
       this.service.getProfile(this.usertype, this.id).subscribe(res => {
@@ -93,7 +93,7 @@ export class ProfileComponent implements OnInit {
         '&id=' + this.id+
         '&usertype=' + this.usertype;
         let self= this;
-      this.service.register(puform).subscribe(res => {
+      this.service.updateProfile(puform).subscribe(res => {
         if (res.successful) {
           this.toastr.success(res.message, "", { timeOut: 3000 })
           self.pform.disable();

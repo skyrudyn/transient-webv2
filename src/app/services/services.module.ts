@@ -176,4 +176,15 @@ export class ServicesModule {
     });
   }
 
+  updateProfile(data) {
+    let url = '{url}/updateProfile.php'
+              .replace(/\{url\}/g, this.url)
+
+    this.headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+     let params=data;         
+    return this.http.post(url,params , {headers: this.headers}).map((res: Response) => {
+      return res.json();
+    });
+  }
+
 }
