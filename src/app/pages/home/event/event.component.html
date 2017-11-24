@@ -1,51 +1,55 @@
 <div class="main-content">
-  <div class="container-fluid">
-      <div class="row">
-          <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header" data-background-color="red">
-                    <div class="row">
-                      <div class="col-md-8">
-                      <h4 class="title">Upcoming Events</h4>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 class="title">Upcoming Events</h4>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="button" class="btn btn-primary" (click)="goto(1)">Add New Event</button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-4"> 
-                      <button type="button" class="btn btn-primary" (click)="goto(1)">Add New Event</button>
-                    </div>
-                    </div>
-                  </div>
-                  <div class="card-content table-responsive">
-                      <table class="table">
-                          <thead class="text-danger">
-                              <tr>
-                                  <th>Event Name</th>
-                                  <th>Event Location</th>
-                                  <th>Event Date</th>
-                                  <th>Assigned Staff</th>
-                                  <th>Action </th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr *ngFor="let events of events">
-                                  <td>{{events.eventName}}</td>
-                                  <td>{{events.eventLocation}}</td>
-                                  <td>{{events.eventDate | date }}</td>
-                                  <ng-container style="margin:auto" *ngFor="let staffs of staffs"><td  *ngIf="staffs.staffId == events.assignedTo">{{staffs.username}}</td></ng-container>
-                                  <td>
-                                    <button type="button" rel="tooltip" title="View/Update Event"  class="btn btn-danger btn-simple btn-xs" (click)="goto(2,events.eventId)">  
-                                        <i class="material-icons">edit</i>
-                                    </button>
-                                    <button type="button" rel="tooltip" title="Delete Event"  class="btn btn-danger btn-simple btn-xs" [disabled]="disabled" (click)="delete(events.eventId)">
-                                        <i class="material-icons">close</i>
-                                    </button>
-                                </td>
-                              </tr>
-                          </tbody>
-                      </table>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-danger">
+                                <tr>
+                                    <th>Event Name</th>
+                                    <th>Event Location</th>
+                                    <th>Event Date</th>
+                                    <th>Assigned Staff</th>
+                                    <th>Action </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let events of events">
+                                    <td>{{events.eventName}}</td>
+                                    <td>{{events.eventLocation}}</td>
+                                    <td>{{events.eventDate | date }}</td>
+                                    <ng-container style="margin:auto" *ngFor="let staffs of staffs">
+                                        <td *ngIf="staffs.staffId == events.assignedTo">{{staffs.username}}
+                                        </td>
+                                        <td *ngIf="staffs.staffId == events.assignedTo">
+                                            <button type="button" rel="tooltip" title="View/Update Event" class="btn btn-danger btn-simple btn-xs" [disabled]="staffId != events.assignedTo" (click)="goto(2,events.eventId)">
+                                                <i class="material-icons">edit</i>
+                                            </button>
+                                            <button type="button" rel="tooltip" title="Delete Event" class="btn btn-danger btn-simple btn-xs" [disabled]="disabled" (click)="delete(events.eventId)">
+                                                <i class="material-icons">close</i>
+                                            </button>
+                                        </td>
+                                    </ng-container>
 
-                  </div>
-              </div>
-          </div>
+                                </tr>
+                            </tbody>
+                        </table>
 
-      </div>
-  </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>

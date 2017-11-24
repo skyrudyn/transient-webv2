@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
           this.toastr.success("Logged in successfully", "", { timeOut: 3000 });
           sessionStorage.setItem('username', res.username)
           sessionStorage.setItem('hotelName', res.hotelName)
+          sessionStorage.setItem('adminId', res.adminId)
+          sessionStorage.setItem('staffId', null)
           sessionStorage.setItem('hotelId', res.hotelId)
           sessionStorage.setItem('userEmail', res.userEmail)
           sessionStorage.setItem('contactNumber', res.contactNumber)
@@ -52,6 +54,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('userEmail', res.userEmail)
           sessionStorage.setItem('contactNumber', res.contactNumber)
           sessionStorage.setItem('staffId', res.staffId)
+          sessionStorage.setItem('adminId', null)
           sessionStorage.setItem('user', res.user);
           sessionStorage.setItem('LoggedIn', '1');
           this.router.navigate(['/home/dashboard']);

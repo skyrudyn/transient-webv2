@@ -13,9 +13,12 @@ export class EventComponent implements OnInit {
   staffs: any;
   disabled:any;
   constructor(private service: ServicesModule, private router: Router,private toastr: ToastrService,) { }
-
+  staffId:any;
   ngOnInit() {
     this.getEvents();
+    if(sessionStorage.getItem('staffId') != null){
+      this.staffId = sessionStorage.getItem('staffId');
+    }
     this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
       this.staffs = res
     })

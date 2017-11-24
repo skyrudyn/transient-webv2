@@ -21,6 +21,7 @@ import { ManagestaffComponent } from './managestaff/managestaff.component';
 import { ViewapplicationComponent } from './viewapplication/viewapplication.component';
 import { EventHistoryComponent } from './event-history/event-history.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
       { path: 'applications', component: ApplicationComponent },
       { path: 'view-application', component: ViewapplicationComponent },
       { path: 'rating', component: RatingComponent },
+      { path: 'profile', component: ProfileComponent },
     ]
   }
 ];

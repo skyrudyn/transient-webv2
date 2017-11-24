@@ -80,12 +80,12 @@
         </div>
         <fieldset class="form-group">
             <label>Event Publish Date *</label>
-            <input class="form-control" type="date" min="{{today}}" formControlName="eventPublishDate" [disabled]="!edit"  required>
+            <input class="form-control" type="date" max="{{ceform.value.eventDate}}" formControlName="eventPublishDate" [disabled]="!edit"  required>
             <!-- <p class="help-block" *ngIf="eventDate.error">Example block-level help text here.</p> -->
           </fieldset> 
           <fieldset class="form-group">
               <label>Event Close Date *</label>
-              <input class="form-control" type="date" min="{{ceform.value.eventDate}}" formControlName="eventCloseDate" [disabled]="!edit"  required>
+              <input class="form-control" type="date" min="{{ceform.value.eventPublishDate}}" formControlName="eventCloseDate" [disabled]="!edit"  required>
               <!-- <p class="help-block" *ngIf="eventDate.error">Example block-level help text here.</p> -->
             </fieldset>
         <div style="text-align:center">

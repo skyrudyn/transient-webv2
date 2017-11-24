@@ -1,0 +1,91 @@
+<div class="main-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title">Edit Profile</h4>
+          </div>
+          <div class="card-content">
+            <form [formGroup]="pform">
+
+              <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <label class="control-label">Username</label>
+                  <div class="form-group form-black label-floating is-empty">
+                    <input type="text" formControlName="username" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <label class="control-label">Password</label>
+                  <div class="form-group form-black label-floating is-empty">
+                    <input type="text" formControlName="password" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <label class="control-label" *ngIf="usertype == 1">Admin Name</label>
+                  <label class="control-label" *ngIf="usertype == 2">Staff Name</label>
+                  <div class="form-group form-black label-floating is-empty">
+                    <input type="text" formControlName="name" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <label class="control-label">Contact Number</label>
+                  <div class="form-group form-black label-floating is-empty">
+                    <input type="text" formControlName="contactNumber" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-2"></div>
+                <div class="col-md-8">
+                  <label class="control-label" *ngIf="usertype == 1">Admin Email</label>
+                  <label class="control-label" *ngIf="usertype == 2">Staff Email</label>
+                  <div class="form-group form-black label-floating is-empty">
+                    <input type="text" formControlName="email" class="form-control">
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+              <button type="submit" class="btn btn-danger pull-right" (click)="update(pform.value)">Update Profile</button>
+              <div class="clearfix"></div>
+              </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="#pablo">
+              <img class="img" src="../assets/img/faces/icon.jpg" />
+            </a>
+          </div>
+
+          <div class="content">
+            <h6 class="category text-gray" *ngIf="usertype == 1">Hotel Admin of {{hotelName}}</h6>
+            <h6 class="category text-gray" *ngIf="usertype == 2">Hotel Staff of {{hotelName}}</h6>
+            <h4 class="card-title">{{name}}</h4>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-
 import { ComponentsModule } from '../../components/components.module';
 import { HomeRoutingModule } from './home.routing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,6 +23,7 @@ import { ManagestaffComponent } from './managestaff/managestaff.component';
 import { ViewapplicationComponent } from './viewapplication/viewapplication.component';
 import { EventHistoryComponent } from './event-history/event-history.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -53,7 +53,7 @@ import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.compo
     CreateeventComponent, 
     ManagestaffComponent, 
     ViewapplicationComponent, 
-    EventHistoryComponent, DashboardAdminComponent,
+    EventHistoryComponent, DashboardAdminComponent, ProfileComponent,
   ]
 })
 export class HomeModule { }

@@ -164,4 +164,16 @@ export class ServicesModule {
       return res.json();
     });
   }
+
+  getProfile(usertype,id) {
+    let url = '{url}/getProfile.php?usertype={usertype}&id={id}'
+              .replace(/\{url\}/g, this.url)
+              .replace(/\{usertype\}/g, usertype)
+              .replace(/\{id\}/g, id)
+         
+    return this.http.get(url).map((res: Response) => {
+      return res.json();
+    });
+  }
+
 }
