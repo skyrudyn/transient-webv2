@@ -28,13 +28,13 @@
                               <tr *ngFor="let events of events">
                                   <td>{{events.eventName}}</td>
                                   <td>{{events.eventLocation}}</td>
-                                  <td>{{events.eventDate}}</td>
+                                  <td>{{events.eventDate | date }}</td>
                                   <ng-container style="margin:auto" *ngFor="let staffs of staffs"><td  *ngIf="staffs.staffId == events.assignedTo">{{staffs.username}}</td></ng-container>
                                   <td>
                                     <button type="button" rel="tooltip" title="View/Update Event"  class="btn btn-danger btn-simple btn-xs" (click)="goto(2,events.eventId)">  
                                         <i class="material-icons">edit</i>
                                     </button>
-                                    <button type="button" rel="tooltip" title="Delete Event"  class="btn btn-danger btn-simple btn-xs" (click)="delete(events.eventId)">
+                                    <button type="button" rel="tooltip" title="Delete Event"  class="btn btn-danger btn-simple btn-xs" [disabled]="disabled" (click)="delete(events.eventId)">
                                         <i class="material-icons">close</i>
                                     </button>
                                 </td>

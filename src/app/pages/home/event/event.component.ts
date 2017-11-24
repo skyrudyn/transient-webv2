@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class EventComponent implements OnInit {
   events: any = []
   staffs: any;
+  disabled:any;
   constructor(private service: ServicesModule, private router: Router,private toastr: ToastrService,) { }
 
   ngOnInit() {
@@ -18,6 +19,11 @@ export class EventComponent implements OnInit {
     this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
       this.staffs = res
     })
+    if(sessionStorage.getItem('user') == '2'){
+        this.disabled = true;
+    }else{
+        this.disabled = false;
+    }
   }
   getEvents() {
     if (sessionStorage.getItem('hotelId') == null) {

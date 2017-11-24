@@ -26,8 +26,8 @@
                                 <tr *ngFor="let events of events">
                                     <td>{{events.eventName}}</td>
                                     <td>{{events.eventLocation}}</td>
-                                    <td>{{events.eventDate}}</td>
-                                    <td>{{events.deletedDate}}</td>
+                                    <td>{{events.eventDate | date }}</td>
+                                    <td>{{events.deletedDate | date }}</td>
                                     <!-- <ng-container style="margin:auto" *ngFor="let staffs of staffs"><td  *ngIf="staffs.staffId == events.assignedTo">{{staffs.username}}</td></ng-container>
                                     <td>
                                       <button type="button" rel="tooltip" title="View/Update Event"  class="btn btn-danger btn-simple btn-xs" (click)="goto(2,events.eventId)">  
