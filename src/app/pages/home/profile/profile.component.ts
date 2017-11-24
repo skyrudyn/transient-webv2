@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ServicesModule } from 'app/services/services.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +15,9 @@ export class ProfileComponent implements OnInit {
   id: any;
   forms: any;
   pform: FormGroup;
-  constructor(private service: ServicesModule, private fb: FormBuilder) {
+  edit: boolean = false;
+  formError: boolean = false;
+  constructor(private service: ServicesModule, private fb: FormBuilder, private toastr: ToastrService) {
     this.pform = fb.group({
       'username': [null, Validators.required],
       'password': [null, Validators.required],
@@ -22,7 +25,7 @@ export class ProfileComponent implements OnInit {
       'contactNumber': [null, Validators.required],
       'email': [null, Validators.required]
     });
-    
+
   }
 
   ngOnInit() {
@@ -48,6 +51,58 @@ export class ProfileComponent implements OnInit {
 
         });
         self.pform.disable();
+      })
+    }
+  }
+
+  enableEdit() {
+    this.edit = true;
+    this.pform.enable();
+    this.toastr.info("Profile is editable");
+  }
+  update(form) {
+
+    this.formError = false;
+    if (form.username == null) {
+      this.toastr.error("Username cannot be empty", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (form.password == null) {
+      this.toastr.error("Password cannot be empty", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (form.name == null) {
+      this.toastr.error("Name cannot be empty", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (form.contactNumber == null) {
+      this.toastr.error("Contact Number cannot be empty", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (form.email == null) {
+      this.toastr.error("Email cannot be empty", "", { timeOut: 3000 });
+      this.formError = true;
+    }
+    if (!this.formError) {
+      let puform = 'username=' + form.username +
+        '&password=' + form.password +
+        '&name=' + form.name +
+        '&contactNumber=' + form.contactNumber +
+        '&email=' + form.email +
+        '&id=' + this.id+
+        '&usertype=' + this.usertype;
+        let self= this;
+      this.service.register(puform).subscribe(res => {
+        if (res.successful) {
+          this.toastr.success(res.message, "", { timeOut: 3000 })
+          self.pform.disable();
+          self.edit = false;
+        } else {
+          this.toastr.error(res.error, "", { timeOut: 3000 })
+        }
+
+      }, error => {
+        this.toastr.error("Service temporarily not available...", "", { timeOut: 3000 })
       })
     }
   }
