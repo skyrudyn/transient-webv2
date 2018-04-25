@@ -25,7 +25,7 @@ const routes: Routes =[
     RouterModule.forRoot(routes, { useHash: true })
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   exports: [
     RouterModule

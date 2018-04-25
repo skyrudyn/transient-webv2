@@ -11,7 +11,7 @@
                       </div>
                     </div>
                     <div class="card-content table-responsive">
-                        <table class="table">
+                        <table class="table" *ngIf="events">
                             <thead class="text-danger">
                                 <tr>
                                     <th>Event Name</th>
@@ -39,8 +39,11 @@
                                   </td> -->
                                 </tr>
                             </tbody>
+                            
                         </table>
-  
+                        <div *ngIf="!events">
+                            No history
+                        </div>
                     </div>
                 </div>
             </div>

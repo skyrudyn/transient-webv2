@@ -1,3 +1,164 @@
-<p>
-  viewapplication works!
-</p>
+<div class="main-content">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-header" data-background-color="red">
+              <h4 class="title">Applicants</h4>
+            </div>
+            <div class="card-content">
+              <form>
+  
+                <div class="row">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Name</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" [value]="applicantDetails?.name" disabled class="form-control">
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Age</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" [value]="applicantDetails?.age" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">IC Number</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" [value]="applicantDetails?.icNo" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Gender</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" *ngIf="applicantDetails?.gender==1" value="Male" disabled  class="form-control">
+                      <input type="text" *ngIf="applicantDetails?.gender==2" value="Female" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Address</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" [value]="applicantDetails?.address" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Phone Number</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" [value]="applicantDetails?.phone" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Email</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" [value]="applicantDetails?.email" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2"></div>
+                  <div class="col-md-8">
+                    <label class="control-label">Typhod Injection Taken</label>
+                    <div class="form-group form-black label-floating is-empty">
+                      <input type="text" value="Yes" *ngIf="applicantDetails?.typhodStatus" disabled  class="form-control">
+                      <input type="text" value="No" *ngIf="!applicantDetails?.typhodStatus" disabled  class="form-control">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-5">
+                <button type="submit" class="btn btn-success pull-right" (click)="approve()">Approve</button></div>
+                <div class="col-md-5">
+                <button type="submit" class="btn btn-danger pull-right" (click)="reject()">Reject</button></div>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+              <div class="card-header" data-background-color="red">
+                <h4 class="title">Job Details</h4>
+              </div>
+              <div class="card-content" *ngIf="jobDetails">
+                <form *ngFor="let jobDetails of jobDetails">
+    
+                  <div class="row">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-8">
+                      <label class="control-label">Application Name</label>
+                      <div class="form-group form-black label-floating is-empty">
+                        <input type="text" [value]="jobDetails?.eventName"  disabled  class="form-control">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-2"></div>
+                      <div class="col-md-8">
+                        <label class="control-label">Application Type</label>
+                        <div class="form-group form-black label-floating is-empty">
+                          <input type="text" [value]="jobDetails?.eventType" disabled  class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                          <label class="control-label">Application Location</label>
+                          <div class="form-group form-black label-floating is-empty">
+                            <input type="text" [value]="jobDetails?.eventLocation"  disabled  class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                          <div class="col-md-2"></div>
+                          <div class="col-md-8">
+                            <label class="control-label">Application Date</label>
+                            <div class="form-group form-black label-floating is-empty">
+                              <input [value]="jobDetails?.email" type="date"  disabled  class="form-control">
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                              <label class="control-label">Application Time</label>
+                              <div class="form-group form-black label-floating is-empty">
+                                <input [value]="jobDetails?.email" type="time"  disabled  class="form-control">
+                              </div>
+                            </div>
+                          </div>
+            
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>

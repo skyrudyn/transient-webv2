@@ -11,33 +11,45 @@ import { ToastrService } from 'ngx-toastr';
 export class EventComponent implements OnInit {
   events: any = []
   staffs: any;
-  disabled:any;
-  constructor(private service: ServicesModule, private router: Router,private toastr: ToastrService,) { }
-  staffId:any;
+  disabled: any;
+  constructor(private service: ServicesModule, private router: Router, private toastr: ToastrService, ) { }
+  staffId: any;
   ngOnInit() {
     this.getEvents();
-    if(sessionStorage.getItem('staffId') != null){
+    if (sessionStorage.getItem('staffId') != null) {
       this.staffId = sessionStorage.getItem('staffId');
     }
     this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
-      this.staffs = res
-    })
-    if(sessionStorage.getItem('user') == '2'){
-        this.disabled = true;
+      if(res.successful){
+      this.staffs = res.response
     }else{
-        this.disabled = false;
+      this.staffs = null
+    }
+    })
+    if (sessionStorage.getItem('user') == '2') {
+      this.disabled = true;
+    } else {
+      this.disabled = false;
     }
   }
   getEvents() {
     if (sessionStorage.getItem('hotelId') == null) {
       let data = 0;
       this.service.getEvent(data).subscribe(res => {
-        this.events = res;
+        if (res.successful) {
+          this.events = res.response;
+        } else {
+          this.events = null;
+        }
       })
     } else {
       let data = sessionStorage.getItem('hotelId');
       this.service.getEvent(data).subscribe(res => {
-        this.events = res;
+        if (res.successful) {
+          this.events = res.response;
+        } else {
+          this.events = null;
+        }
       })
     }
   }

@@ -18,8 +18,12 @@ i:number = 0;
   ngOnInit() {
     let self:this;
     this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res=>{
-      this.staffs =res
-      this.numberOfStaff = this.staffs.length;
+      if(res.successful){
+        this.staffs =res.response
+        this.numberOfStaff = this.staffs.length;
+      }else{
+        this.staffs=null
+      }
       })
   }
   goto(n){

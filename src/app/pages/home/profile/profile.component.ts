@@ -42,7 +42,7 @@ export class ProfileComponent implements OnInit {
     if (this.usertype != null) {
       let self = this;
       this.service.getProfile(this.usertype, this.id).subscribe(res => {
-        self.forms = res;
+        self.forms = res.response;
         self.forms.forEach(element => {
           self.pform.get('username').patchValue(element.username)
           self.pform.get('password').patchValue(element.password)

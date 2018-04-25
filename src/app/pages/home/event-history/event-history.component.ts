@@ -7,8 +7,8 @@ import { ServicesModule } from 'app/services/services.module';
   styleUrls: ['./event-history.component.css']
 })
 export class EventHistoryComponent implements OnInit {
-  events:any;
-  constructor(private service:ServicesModule) { }
+  events: any;
+  constructor(private service: ServicesModule) { }
 
   ngOnInit() {
     this.getEvents();
@@ -18,12 +18,20 @@ export class EventHistoryComponent implements OnInit {
     if (sessionStorage.getItem('hotelId') == null) {
       let data = 0;
       this.service.getEventHistory(data).subscribe(res => {
-        this.events = res;
+        if (res.successful) {
+          this.events = res.response
+        } else {
+          this.events = null;
+        }
       })
     } else {
       let data = sessionStorage.getItem('hotelId');
       this.service.getEventHistory(data).subscribe(res => {
-        this.events = res;
+        if (res.successful) {
+          this.events = res.response
+        } else {
+          this.events = null;
+        }
       })
     }
   }

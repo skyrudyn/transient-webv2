@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div class="card-content table-responsive">
-                        <table class="table">
+                        <table class="table" *ngIf="staffs">
                             <thead class="text-danger" item-width="10%">
                                 <tr>
                                     <th>Staff Id</th>
@@ -39,7 +39,7 @@
                                 </tr>
                             </tbody>
                         </table>
-
+                        <div *ngIf="!staffs">No Staff</div>
                     </div>
                 </div>
             </div>

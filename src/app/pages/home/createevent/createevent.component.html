@@ -78,16 +78,14 @@
             <option *ngFor="let staff of staff" [value]="staff.staffId">{{staff.username}}</option>
           </select>
         </div>
-        <fieldset class="form-group">
+        <!-- <fieldset class="form-group">
             <label>Event Publish Date *</label>
             <input class="form-control" type="date" max="{{ceform.value.eventDate}}" formControlName="eventPublishDate" [disabled]="!edit"  required>
-            <!-- <p class="help-block" *ngIf="eventDate.error">Example block-level help text here.</p> -->
-          </fieldset> 
+             </fieldset> 
           <fieldset class="form-group">
               <label>Event Close Date *</label>
               <input class="form-control" type="date" min="{{ceform.value.eventPublishDate}}" formControlName="eventCloseDate" [disabled]="!edit"  required>
-              <!-- <p class="help-block" *ngIf="eventDate.error">Example block-level help text here.</p> -->
-            </fieldset>
+              </fieldset> -->
         <div style="text-align:center">
           <button class="btn btn-danger" (click)="create(ceform.value,1)">Create</button>
           <button type="submit" (click)="goBack()" class="btn btn-danger">Back</button>
@@ -186,16 +184,14 @@
             <option *ngFor="let staff of staff" [value]="staff.staffId">{{staff.username}}</option>
           </select>
         </div>
-        <fieldset class="form-group">
+        <!-- <fieldset class="form-group">
             <label>Event Publish Date *</label>
             <input class="form-control" type="date" min="{{today}}" formControlName="eventPublishDate" [disabled]="!edit"  required>
-            <!-- <p class="help-block" *ngIf="eventDate.error">Example block-level help text here.</p> -->
-          </fieldset> 
+            </fieldset> 
           <fieldset class="form-group">
               <label>Event Close Date *</label>
               <input class="form-control" type="date" min="{{today}}" formControlName="eventCloseDate" [disabled]="!edit"  required>
-              <!-- <p class="help-block" *ngIf="eventDate.error">Example block-level help text here.</p> -->
-            </fieldset>
+              </fieldset> -->
         <div style="text-align:center">
           <button type="submit" class="btn btn-primary" *ngIf="!edit" (click)="enableEdit()">Edit</button>
           <button type="submit" class="btn btn-primary" *ngIf="edit" (click)="create(ceform.value,2)">Save</button>

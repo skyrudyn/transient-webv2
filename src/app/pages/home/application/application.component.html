@@ -6,29 +6,30 @@
                     <div class="card-header" data-background-color="red">
                         <h4 class="title">Applications</h4>
                       </div>
-                    <div class="card-content table-responsive">
-                        <table class="table">
+                    <div class="card-content table-responsive" >
+                        <table class="table" *ngIf="applications">
                             <thead class="text-danger">
                                 <tr>
                                     <th>Event Name</th>
                                     <th>Event Date</th>
-                                    <th>Total Application</th>
+                                    <th>Applicant Details</th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor="let events of events">
-                                    <td>{{events.eventName}}</td>
-                                    <td>{{events.eventLocation}}</td>
-                                    <td>{{events.eventDate}}</td>
+                                <tr *ngFor="let application of applications">
+                                    <td>{{application.eventName}}</td>
+                                    <td>{{application.eventDate | date: 'dd/MM/yyyy'}}</td>
+                                    <td>{{application.applicantId}}</td>
                                     <td>
-                                      <button type="button" class="btn btn-primary btn-sm">View Applications</button>
+                                      <button type="button" class="btn btn-primary btn-sm" (click)="viewApplication(application)">View Applications</button>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-  
+                        <div *ngIf="!applications"> No Application</div>
                     </div>
+                    
                 </div>
             </div>
   

@@ -12,7 +12,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    require('../../../../assets/js/charts.js')();
+    // require('../../../../assets/js/charts.js')();
   }
 
 }

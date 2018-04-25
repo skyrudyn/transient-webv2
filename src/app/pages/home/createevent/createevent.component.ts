@@ -42,8 +42,8 @@ export class CreateeventComponent implements OnInit {
       'female': [null, Validators.required],
       'mixed': [null, Validators.required],
       'assignedTo': [null, Validators.required],
-      'eventPublishDate': [null, Validators.required],
-      'eventCloseDate': [null, Validators.required]
+      // 'eventPublishDate': [null, Validators.required],
+      // 'eventCloseDate': [null, Validators.required]
     });
   }
 
@@ -52,24 +52,36 @@ export class CreateeventComponent implements OnInit {
     if (sessionStorage.getItem('LoggedIn') == '1') {
       let self = this;
       this.service.getType().subscribe(res => {
-        self.eventTypes = res;
+        if (res.successful) {
+          self.eventTypes = res.response;
+        } else {
+          self.eventTypes = null;
+        }
       })
       this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
-        this.staff = res
+        if (res.successful) {
+          self.staff = res.response;
+        } else {
+          self.staff = null;
+        }
       })
       this.service.getParticipantType().subscribe(res => {
-        this.participantTypes = res;
+        if (res.successful) {
+          this.participantTypes = res.response;
+        } else {
+          this.participantTypes = null;
+        }
       })
 
       this.today = new Date().toJSON().split('T')[0];
     } else {
       this.router.navigate(['/login'])
     }
-    
+
     if (sessionStorage.getItem('eventId') == 'null') {
       this.view = true;
-      
-    } else if(sessionStorage.getItem('eventId') !== 'null'){
+
+    } else if (sessionStorage.getItem('eventId') !== 'null') {
       this.eventId = sessionStorage.getItem('eventId');
       this.view = false;
       let self = this;
@@ -90,8 +102,8 @@ export class CreateeventComponent implements OnInit {
           self.ceform.get('female').patchValue(element.female)
           self.ceform.get('mixed').patchValue(element.mixed)
           self.ceform.get('assignedTo').patchValue(element.assignedTo)
-          self.ceform.get('eventPublishDate').patchValue(element.eventPublishDate)
-          self.ceform.get('eventCloseDate').patchValue(element.eventCloseDate)
+          // self.ceform.get('eventPublishDate').patchValue(element.eventPublishDate)
+          // self.ceform.get('eventCloseDate').patchValue(element.eventCloseDate)
         });
         self.ceform.disable();
       })
@@ -130,7 +142,7 @@ export class CreateeventComponent implements OnInit {
     console.log(this.male, this.female, this.mixed)
   }
   create(cefrom, i) {
-    console.log("logging",cefrom);
+    console.log("logging", cefrom);
     this.formError = false;
     if (cefrom.eventName == null) {
       this.toastr.error("Event Name cannot be empty", "", { timeOut: 3000 });
@@ -152,7 +164,7 @@ export class CreateeventComponent implements OnInit {
       this.toastr.error("Pay Type cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.payRate ==null) {
+    if (cefrom.payRate == null) {
       this.toastr.error("Pay Rate cannot be empty", "", { timeOut: 3000 });
       this.formError = true;
     }
@@ -184,14 +196,14 @@ export class CreateeventComponent implements OnInit {
       this.toastr.error("Please assign event to a staff", "", { timeOut: 3000 });
       this.formError = true;
     }
-    if (cefrom.eventPublishDate == null) {
-      this.toastr.error("Please set Event Publish Date", "", { timeOut: 3000 });
-      this.formError = true;
-    }
-    if (cefrom.eventCloseDate == null) {
-      this.toastr.error("Please set Event Close Date", "", { timeOut: 3000 });
-      this.formError = true;
-    }
+    // if (cefrom.eventPublishDate == null) {
+    //   this.toastr.error("Please set Event Publish Date", "", { timeOut: 3000 });
+    //   this.formError = true;
+    // }
+    // if (cefrom.eventCloseDate == null) {
+    //   this.toastr.error("Please set Event Close Date", "", { timeOut: 3000 });
+    //   this.formError = true;
+    // }
 
     if (!this.formError && i == 1) {
       let eventForm = 'eventName=' + cefrom.eventName +
@@ -207,10 +219,10 @@ export class CreateeventComponent implements OnInit {
         '&female=' + cefrom.female +
         '&mixed=' + cefrom.mixed +
         '&assignTo=' + cefrom.assignedTo +
-        '&eventPublishDate=' + cefrom.eventPublishDate +
-        '&eventCloseDate=' + cefrom.eventCloseDate +
+        // '&eventPublishDate=' + cefrom.eventPublishDate +
+        // '&eventCloseDate=' + cefrom.eventCloseDate +
         '&createdBy=' + this.createdBy
-        let self=this
+      let self = this
       this.service.createEvent(eventForm).subscribe(res => {
         if (res.successful) {
           this.toastr.success(res.message, "", { timeOut: 3000 })
@@ -235,11 +247,11 @@ export class CreateeventComponent implements OnInit {
         '&female=' + cefrom.female +
         '&mixed=' + cefrom.mixed +
         '&assignTo=' + cefrom.assignedTo +
-        '&eventPublishDate=' + cefrom.eventPublishDate +
-        '&eventCloseDate=' + cefrom.eventCloseDate +
+        // '&eventPublishDate=' + cefrom.eventPublishDate +
+        // '&eventCloseDate=' + cefrom.eventCloseDate +
         '&createdBy=' + this.createdBy +
         '&eventId=' + this.eventId;
-        let self=this
+      let self = this
       this.service.updateEvent(updateForm).subscribe(res => {
         if (res.successful) {
           this.toastr.success(res.message, "", { timeOut: 3000 })
@@ -250,9 +262,9 @@ export class CreateeventComponent implements OnInit {
       }, error => {
         this.toastr.error("Service temporarily not available...", "", { timeOut: 3000 })
       })
-    }else{
+    } else {
       this.toastr.error("Form input error", "", { timeOut: 3000 })
-    
+
     }
     // } else {
     //   this.formError = false;

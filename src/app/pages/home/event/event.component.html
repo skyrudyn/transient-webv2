@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="card-content table-responsive">
-                        <table class="table">
+                        <table class="table" *ngIf="events">
                             <thead class="text-danger">
                                 <tr>
                                     <th>Event Name</th>
@@ -28,7 +28,7 @@
                                 <tr *ngFor="let events of events">
                                     <td>{{events.eventName}}</td>
                                     <td>{{events.eventLocation}}</td>
-                                    <td>{{events.eventDate | date }}</td>
+                                    <td>{{events.eventDate | date: 'dd/MM/yyyy' }}</td>
                                     <ng-container style="margin:auto" *ngFor="let staffs of staffs">
                                         <td *ngIf="staffs.staffId == events.assignedTo">{{staffs.username}}
                                         </td>
@@ -45,6 +45,9 @@
                                 </tr>
                             </tbody>
                         </table>
+                        <div *ngIf="!events">
+                            No events
+                        </div>
 
                     </div>
                 </div>

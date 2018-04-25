@@ -49,7 +49,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   exports: [
     RouterModule
