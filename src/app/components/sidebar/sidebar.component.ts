@@ -19,7 +19,6 @@ export class SidebarComponent implements OnInit {
     this.menuItems = ROUTES.filter(menuItem => menuItem);
     this.displayText = sessionStorage.getItem('hotelName');
     this.user =  sessionStorage.getItem('user');
-    console.log(this.user)
   }
 
 }

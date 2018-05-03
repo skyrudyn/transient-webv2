@@ -63,7 +63,6 @@ export class EventComponent implements OnInit {
     }
   }
   delete(eventId) {
-    console.log(eventId)
     let remove = 'eventId=' + eventId;
 
     this.service.archiveEvent(remove).subscribe(res => {

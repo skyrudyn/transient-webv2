@@ -54,24 +54,26 @@ export class CreateeventComponent implements OnInit {
       this.service.getType().subscribe(res => {
         if (res.successful) {
           self.eventTypes = res.response;
+          this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
+            if (res.successful) {
+              self.staff = res.response;
+              this.service.getParticipantType().subscribe(res => {
+                if (res.successful) {
+                  this.participantTypes = res.response;
+                } else {
+                  this.participantTypes = null;
+                }
+              })
+            } else {
+              self.staff = null;
+            }
+          })
         } else {
           self.eventTypes = null;
         }
       })
-      this.service.getStaff(sessionStorage.getItem('hotelId')).subscribe(res => {
-        if (res.successful) {
-          self.staff = res.response;
-        } else {
-          self.staff = null;
-        }
-      })
-      this.service.getParticipantType().subscribe(res => {
-        if (res.successful) {
-          this.participantTypes = res.response;
-        } else {
-          this.participantTypes = null;
-        }
-      })
+      
+    
 
       this.today = new Date().toJSON().split('T')[0];
     } else {
@@ -121,7 +123,6 @@ export class CreateeventComponent implements OnInit {
     this.toastr.info("Event is editable");
   }
   change(n) {
-    console.log(n)
     if (n == 1) {
       this.male = true;
       this.female = false;
@@ -139,10 +140,8 @@ export class CreateeventComponent implements OnInit {
       this.female = false;
       this.mixed = true;
     }
-    console.log(this.male, this.female, this.mixed)
   }
   create(cefrom, i) {
-    console.log("logging", cefrom);
     this.formError = false;
     if (cefrom.eventName == null) {
       this.toastr.error("Event Name cannot be empty", "", { timeOut: 3000 });

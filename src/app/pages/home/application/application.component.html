@@ -12,7 +12,7 @@
                                 <tr>
                                     <th>Event Name</th>
                                     <th>Event Date</th>
-                                    <th>Applicant Details</th>
+                                    <th>Applicant Name</th>
                                     <th>Action </th>
                                 </tr>
                             </thead>
@@ -20,7 +20,7 @@
                                 <tr *ngFor="let application of applications">
                                     <td>{{application.eventName}}</td>
                                     <td>{{application.eventDate | date: 'dd/MM/yyyy'}}</td>
-                                    <td>{{application.applicantId}}</td>
+                                    <td>{{application.name}}</td>
                                     <td>
                                       <button type="button" class="btn btn-primary btn-sm" (click)="viewApplication(application)">View Applications</button>
                                     </td>

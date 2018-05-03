@@ -32,7 +32,6 @@ export class AdminLoginComponent implements OnInit {
 
   login(form) {
     sessionStorage.clear();
-    console.log(form.username,form.password)
     if (form.username != '' || form.password != '') {
       let userCredential = { 'username': form.username, 'password': form.password };
       this.service.loginAdmin(userCredential).subscribe(res => {

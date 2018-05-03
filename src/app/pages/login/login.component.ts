@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
 
   login(form) {
     sessionStorage.clear();
-    console.log(form.username,form.password)
     if (form.username != '' || form.password != '') {
       let userCredential = { 'username': form.username, 'password': form.password };
       this.service.login(userCredential).subscribe(res => {
@@ -44,7 +43,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('user', res.user);
           sessionStorage.setItem('id',res.adminId)
           sessionStorage.setItem('LoggedIn', '1');
-          this.router.navigate(['/home/dashboard']);
+          this.router.navigate(['/home/event']);
 
         } else if (res.successful && res.user == 2) {
           this.toastr.success("Logged in successfully", "", { timeOut: 3000 });
@@ -56,7 +55,7 @@ export class LoginComponent implements OnInit {
           sessionStorage.setItem('staffId', res.staffId)
           sessionStorage.setItem('user', res.user);
           sessionStorage.setItem('LoggedIn', '1');
-          this.router.navigate(['/home/dashboard']);
+          this.router.navigate(['/home/event']);
           sessionStorage.setItem('id',res.staffId)
 
         }

@@ -43,7 +43,6 @@ export class ManagestaffComponent implements OnInit {
       let self = this;
       this.service.editStaff(sessionStorage.getItem('staffId')).subscribe(res => {
         self.forms = res;
-        console.log(res)
         self.forms.forEach(element => {
           self.updateform.get('username').patchValue(element.username)
           self.updateform.get('password').patchValue(element.password)
@@ -64,7 +63,6 @@ export class ManagestaffComponent implements OnInit {
     this.toastr.info("Staff is editable");
   }
   updateStaff(updateforms) {
-    console.log("comes",updateforms)
     this.formError = false;
     if (updateforms.username == null) {
       this.toastr.error("Username cannot be empty", "", { timeOut: 3000 });
@@ -107,7 +105,6 @@ export class ManagestaffComponent implements OnInit {
     }
   }
   addStaff(username, password, staffName, contactNumber, email) {
-    console.log("comes")
     this.formError = false;
     if (username == "") {
       this.toastr.error("Username cannot be empty", "", { timeOut: 3000 });

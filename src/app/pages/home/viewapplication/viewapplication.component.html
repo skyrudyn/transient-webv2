@@ -91,12 +91,6 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-5">
-                <button type="submit" class="btn btn-success pull-right" (click)="approve()">Approve</button></div>
-                <div class="col-md-5">
-                <button type="submit" class="btn btn-danger pull-right" (click)="reject()">Reject</button></div>
-              </div>
               </form>
             </div>
           </div>
@@ -154,7 +148,19 @@
                               </div>
                             </div>
                           </div>
-            
+
+                          <div class="row" *ngIf="jobDetails?.status === '1'">
+                            <div class="col-md-5">
+                          <button type="submit" class="btn btn-success pull-right">Approved</button></div>
+                         
+                        </div>
+
+                          <div class="row" *ngIf="jobDetails?.status === '0'">
+                            <div class="col-md-5">
+                          <button type="submit" class="btn btn-success pull-right"  (click)="approve()">Approve</button></div>
+                          <div class="col-md-5">
+                          <button type="submit" class="btn btn-danger pull-right" (click)="reject()">Reject</button></div>
+                        </div>
                 </form>
               </div>
             </div>

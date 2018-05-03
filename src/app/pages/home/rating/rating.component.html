@@ -1,3 +1,41 @@
-<p>
-  rating works!
-</p>
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title">Rating</h4>
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table" *ngIf="ratings">
+              <thead class="text-danger">
+                <tr>
+                  <th>Event Name</th>
+                  <th>Event Date</th>
+                  <th>Rated By </th>
+                  <th>Rating </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rating of ratings">
+                  <td>{{rating.eventName}}</td>
+                  <td>{{rating.eventDate | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{rating.name}}</td>
+                  <td>
+                    <ng-container *ngFor="let dummy of ' '.repeat(rating.rating).split(''), let x = index">
+                      <i class="fa fa-star"></i>
+                    </ng-container>
+                    <!-- <button type="button" class="btn btn-primary btn-sm" (click)="viewApplication(application)">View Applications</button> -->
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <div *ngIf="!ratings"> No Rating</div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

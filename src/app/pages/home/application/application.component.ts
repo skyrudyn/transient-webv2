@@ -23,7 +23,7 @@ export class ApplicationComponent implements OnInit {
     if (sessionStorage.getItem('hotelId') == null) {
       let data = 0;
       this.service.getApplication(data).subscribe(res => {
-        if (res.succesfull) {
+        if (res.successful) {
           this.applications = res.response;
           this.sort()
         } else {
@@ -33,7 +33,7 @@ export class ApplicationComponent implements OnInit {
     } else {
       let data = sessionStorage.getItem('hotelId');
       this.service.getApplication(data).subscribe(res => {
-        if (res.succesfull) {
+        if (res.successful) {
           this.applications = res.response;
           this.sort()
         } else {

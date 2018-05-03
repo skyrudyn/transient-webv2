@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
     sessionStorage.clear();
   }
   shows(){
-    console.log(this.show)
   }
   cancelConfirm() {
     sessionStorage.clear

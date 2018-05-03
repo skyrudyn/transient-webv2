@@ -14,7 +14,7 @@ import { Injectable } from '@angular/core';
 })
 export class ServicesModule {
   constructor(private http: Http, private router: Router) { }
-  url = "https://transientservitor.my/backend/";
+  url = "http://transientservitor.my/backend";
   headers = new Headers();
 
   login(data) {
@@ -103,7 +103,7 @@ export class ServicesModule {
       return res.json();
     });
   }
-
+  
   getEvent(datas) {
     let url = '{url}/getEvent.php?createdBy={createdBy}'
       .replace(/\{url\}/g, this.url)
@@ -151,6 +151,16 @@ export class ServicesModule {
     return this.http.post(url, params, { headers: this.headers }).map((res: Response) => {
       return res.json();
     });
+  }
+
+  deleteStaff(data) {
+    let url = '{url}/deleteStaff.php?staffId={staffId}'
+      .replace(/\{url\}/g, this.url)
+      .replace(/\{staffId\}/g, data)
+
+    return this.http.get(url).map((res: Response) => {
+      return res.json();
+    })
   }
 
   archiveEvent(data) {

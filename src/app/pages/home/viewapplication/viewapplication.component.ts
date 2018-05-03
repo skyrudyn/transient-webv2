@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router  , ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ServicesModule } from '../../../services/services.module'
 @Component({
   selector: 'app-viewapplication',
@@ -10,43 +10,40 @@ export class ViewapplicationComponent implements OnInit {
 
   constructor(private activeRoute: ActivatedRoute,
     private service: ServicesModule) { }
-    applicantDetails:any;
-    jobDetails:any;
-    eventTypes:any;
+  applicantDetails: any;
+  jobDetails: any;
+  eventTypes: any;
   ngOnInit() {
-    console.log(localStorage.getItem('applicantId'))
-    console.log(localStorage.getItem('applicationId'))
     this.service.getType().subscribe(res => {
-      if(res.successful){
+      if (res.successful) {
         this.eventTypes = res.response;
-      }else{
+      } else {
         this.eventTypes = null
       }
     })
-    this.service.getApplicantById(localStorage.getItem('applicantId')).subscribe(res=>{
-      if(res.successful){
-        this.applicantDetails = res.response;
-      }else{
+    this.service.getApplicantById(localStorage.getItem('applicantId')).subscribe(res => {
+      if (res.successful) {
+        this.applicantDetails = res;
+        this.service.getApplicationById(localStorage.getItem('applicationId')).subscribe(res => {
+          if (res.successful) {
+            this.jobDetails = res.response;
+          } else {
+            this.jobDetails = null
+          }
+        })
+      } else {
         this.applicantDetails = null
       }
     })
-    this.service.getApplicationById(localStorage.getItem('applicationId')).subscribe(res=>{
-      if(res.successful){
-        this.jobDetails = res.response;
-      }else{
-        this.jobDetails = null
-      }
-    })
+
   }
 
-  approve(){
-  this.service.respondApplication(true,localStorage.getItem('applicationId')).subscribe(res=>{
-    console.log(res)
-  })
+  approve() {
+    this.service.respondApplication(true, localStorage.getItem('applicationId')).subscribe(res => {
+    })
   }
-  reject(){
-    this.service.respondApplication(false,localStorage.getItem('applicationId')).subscribe(res=>{
-      console.log(res)
+  reject() {
+    this.service.respondApplication(false, localStorage.getItem('applicationId')).subscribe(res => {
     })
   }
 }
